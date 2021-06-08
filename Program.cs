@@ -1,4 +1,5 @@
 ﻿using System;
+using ProjetoProdutosPOO_Dupla.Classes;
 
 namespace ProjetoProdutosPOO_Dupla
 {
@@ -6,7 +7,7 @@ namespace ProjetoProdutosPOO_Dupla
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
         }
     }
 }

@@ -11,20 +11,33 @@ namespace ProjetoProdutosPOO_Dupla.Classes
         public string Nome { get; set; }
 
         public DateTime DataDeCadastro;
+
+        List<MARCA> ListaMarca = new List<MARCA>();
+
+        public MARCA(){
+
+        }
+        public MARCA(int _codigo, string _nome, DateTime _DataCadastro){
+            this.Codigo = _codigo;
+            this.Nome = _nome;
+            this.DataDeCadastro = _DataCadastro;
+        }
         
         public string Cadastrar(MARCA Marca)
         {
-            throw new System.NotImplementedException();
+            ListaMarca.Add(Marca);
+            return $"{Marca.Nome} foi adicionado com susseso";
         }
 
         public string Deletar(MARCA Marca)
         {
-            throw new System.NotImplementedException();
+            ListaMarca.Remove(Marca);
+            return $"{Marca.Nome} foi deletada com susseso";
         }
 
         public List<MARCA> Listar()
         {
-            throw new System.NotImplementedException();
+            return ListaMarca;
         }
     }
 }

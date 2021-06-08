@@ -16,10 +16,10 @@ namespace ProjetoProdutosPOO_Dupla.Classes
 
         public MARCA Marca { get; set; }
         
-        public Usuario CadastroPor { get; set; }
+        public USUARIO CadastroPor { get; set; }
         
         public List<PRODUTO> ListaProduto { get; set; }
-        
+
         public string Cadastrar(PRODUTO Produto)
         {
             throw new System.NotImplementedException();
