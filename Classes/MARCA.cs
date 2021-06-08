@@ -8,31 +8,31 @@ namespace ProjetoProdutosPOO_Dupla.Classes
     {
         public int Codigo { get; set; }
 
-        public string Nome { get; set; }
+        public string NomeMarca { get; set; }
 
         public DateTime DataDeCadastro;
 
-        List<MARCA> ListaMarca = new List<MARCA>();
+        public List<MARCA> ListaMarca = new List<MARCA>();
 
         public MARCA(){
 
         }
         public MARCA(int _codigo, string _nome, DateTime _DataCadastro){
             this.Codigo = _codigo;
-            this.Nome = _nome;
+            this.NomeMarca = _nome;
             this.DataDeCadastro = _DataCadastro;
         }
         
         public string Cadastrar(MARCA Marca)
         {
             ListaMarca.Add(Marca);
-            return $"{Marca.Nome} foi adicionado com susseso";
+            return $"{Marca.NomeMarca} foi adicionado com susseso";
         }
 
         public string Deletar(MARCA Marca)
         {
             ListaMarca.Remove(Marca);
-            return $"{Marca.Nome} foi deletada com susseso";
+            return $"{Marca.NomeMarca} foi deletada com susseso";
         }
 
         public List<MARCA> Listar()
