@@ -40,12 +40,13 @@ namespace ProjetoProdutosPOO_Dupla.Classes
 
         public string Deletar(PRODUTO Produto)
         {
-            throw new System.NotImplementedException();
+            ListaProduto.Remove(Produto);
+            return $"produto de nome: {Produto.NomeProduto}, foi removido com susesso por {CadastroPor}";
         }
 
         public List<PRODUTO> Listar()
         {
-            throw new System.NotImplementedException();
+            return ListaProduto;
         }
     }
 }
