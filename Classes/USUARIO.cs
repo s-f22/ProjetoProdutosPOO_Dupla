@@ -1,24 +1,83 @@
 using System;
+using System.Collections.Generic;
 using ProjetoProdutosPOO_Dupla.INTERFACES;
 
 namespace ProjetoProdutosPOO_Dupla.Classes
 {
     public class USUARIO : IUSUARIO
     {
+
+        
         private int Codigo { get; set; }
         private string Nome { get; set; }
-        private string Email { get; set; }
-        private string Senha { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
         private DateTime DataCadastro { get; set; }
+        
+        //LOGIN acesso_3 = new LOGIN();
 
-        public void Cadastrar(string Usuario)
+        
+        
+
+
+        public List<USUARIO> listaUsuariosCadastrados = new List<USUARIO>();
+
+
+        public USUARIO()
         {
-            throw new NotImplementedException();
+             
         }
 
-        public void Deletar(string Usuario)
+
+
+        public USUARIO(string _nome, string _email, string _senha, int _codigo, DateTime _dataCadastro)
         {
-            throw new NotImplementedException();
+            this.Nome = _nome;
+            this.Email = _email;
+            this.Senha = _senha;
+            this.Codigo = _codigo;
+            this.DataCadastro = _dataCadastro;
+
+            
         }
+
+
+        public USUARIO(string _deletarNome)
+        {
+            this.Nome = _deletarNome;
+        }
+
+        
+
+        public string Cadastrar(USUARIO UsuarioADD)
+        {
+
+            listaUsuariosCadastrados.Add(UsuarioADD);
+
+            foreach (USUARIO item in listaUsuariosCadastrados)
+            {
+                Console.WriteLine($"\n{item.Nome}, {item.Email}, {item.DataCadastro}, {item.Codigo}");
+            }
+
+            return "Usuario cadastrado com sucesso."; // não esta retornando
+        }
+
+        public string Deletar(USUARIO UsuarioRMV)
+        {
+            
+
+            listaUsuariosCadastrados.RemoveAll(x => x.Nome == UsuarioRMV.Nome);
+
+            foreach (USUARIO item in listaUsuariosCadastrados)
+            {
+                Console.WriteLine($"\n{item.Nome}, {item.Email}, {item.DataCadastro}, {item.Codigo}");
+            }
+
+            return "Usuario removido com sucesso!";
+
+
+        }
+
+
     }
 }

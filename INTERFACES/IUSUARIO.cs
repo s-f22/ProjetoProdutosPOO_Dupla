@@ -1,8 +1,10 @@
+using ProjetoProdutosPOO_Dupla.Classes;
+
 namespace ProjetoProdutosPOO_Dupla.INTERFACES
 {
     public interface IUSUARIO
     {
-         void Cadastrar(string Usuario);
-         void Deletar(string Usuario);
+         string Cadastrar(USUARIO Usuario);
+         string Deletar(USUARIO Usuario);
     }
 }
