@@ -7,15 +7,28 @@ namespace ProjetoProdutosPOO_Dupla.Classes
     public class USUARIO : IUSUARIO
     {
 
-        public USUARIO()
-        {
-
-        }
+        
         private int Codigo { get; set; }
         private string Nome { get; set; }
-        private string Email { get; set; }
-        private string Senha { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
         private DateTime DataCadastro { get; set; }
+        
+        //LOGIN acesso_3 = new LOGIN();
+
+        
+        
+
+
+        public List<USUARIO> listaUsuariosCadastrados = new List<USUARIO>();
+
+
+        public USUARIO()
+        {
+             
+        }
+
+
 
         public USUARIO(string _nome, string _email, string _senha, int _codigo, DateTime _dataCadastro)
         {
@@ -24,14 +37,21 @@ namespace ProjetoProdutosPOO_Dupla.Classes
             this.Senha = _senha;
             this.Codigo = _codigo;
             this.DataCadastro = _dataCadastro;
+
+            
         }
 
-        public List<USUARIO> listaUsuariosCadastrados = new List<USUARIO>();
+
+        public USUARIO(string _deletarNome)
+        {
+            this.Nome = _deletarNome;
+        }
+
+        
 
         public string Cadastrar(USUARIO UsuarioADD)
         {
 
-            
             listaUsuariosCadastrados.Add(UsuarioADD);
 
             foreach (USUARIO item in listaUsuariosCadastrados)
@@ -44,10 +64,14 @@ namespace ProjetoProdutosPOO_Dupla.Classes
 
         public string Deletar(USUARIO UsuarioRMV)
         {
-            Console.WriteLine("Qual o nome do usuario que deseja remover?");
-            UsuarioRMV.Nome = Console.ReadLine().ToLower();
+            
 
             listaUsuariosCadastrados.RemoveAll(x => x.Nome == UsuarioRMV.Nome);
+
+            foreach (USUARIO item in listaUsuariosCadastrados)
+            {
+                Console.WriteLine($"\n{item.Nome}, {item.Email}, {item.DataCadastro}, {item.Codigo}");
+            }
 
             return "Usuario removido com sucesso!";
 
