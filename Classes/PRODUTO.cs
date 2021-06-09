@@ -16,23 +16,37 @@ namespace ProjetoProdutosPOO_Dupla.Classes
 
         public MARCA Marca { get; set; }
         
-        public Usuario CadastroPor { get; set; }
+        public USUARIO CadastroPor { get; set; }
         
-        public List<PRODUTO> ListaProduto { get; set; }
-        
+        public List<PRODUTO> ListaProduto = new List<PRODUTO>();
+
+        public PRODUTO(){
+
+        }
+        public PRODUTO(int _Codigo, string _NomeProduto, float _Preco,DateTime _DataCadastro, MARCA _Marca, USUARIO _CadastroPor){
+            this.Codigo = _Codigo;
+            this.NomeProduto = _NomeProduto;
+            this.Preco = _Preco;
+            this.DataDeCadastro = _DataCadastro;
+            this.Marca = _Marca;
+            this.CadastroPor = _CadastroPor;
+        }
+
         public string Cadastrar(PRODUTO Produto)
         {
-            throw new System.NotImplementedException();
+            ListaProduto.Add(Produto);
+            return $"produto de nome: {Produto.NomeProduto}, cadastrado com susesso por {CadastroPor}";
         }
 
         public string Deletar(PRODUTO Produto)
         {
-            throw new System.NotImplementedException();
+            ListaProduto.Remove(Produto);
+            return $"produto de nome: {Produto.NomeProduto}, foi removido com susesso por {CadastroPor}";
         }
 
         public List<PRODUTO> Listar()
         {
-            throw new System.NotImplementedException();
+            return ListaProduto;
         }
     }
 }
