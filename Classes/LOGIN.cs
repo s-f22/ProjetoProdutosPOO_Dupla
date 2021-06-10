@@ -6,7 +6,7 @@ namespace ProjetoProdutosPOO_Dupla.Classes
     public class LOGIN : ILOGIN
     {
         private bool Logado { get; set; }
-
+        
 
         public LOGIN() // metodo construtor sem parametros/argumentos
         {
@@ -14,7 +14,8 @@ namespace ProjetoProdutosPOO_Dupla.Classes
             string opcao;
             int contadorCodigo = 0;
             Logado = false;
-            string escolha_marca;
+            MARCA escolha;   
+            string escolha_marca;  
             
             MARCA marca_1 = new MARCA();
             USUARIO acesso_1 = new USUARIO();
@@ -151,12 +152,12 @@ namespace ProjetoProdutosPOO_Dupla.Classes
                                             {
                                                 Console.WriteLine($"{item.Codigo} - {item.NomeMarca}\n");
                                             }
-                                            Console.WriteLine("Qual nome do marca que vc quer?");
+                                            Console.WriteLine("Qual nome da marca que vc quer?");
                                             escolha_marca = Console.ReadLine();
-                                            MARCA escolha = marca_1.ListaMarca.Find(x =>x.NomeMarca == escolha_marca);
+                                            escolha = marca_1.ListaMarca.Find(x =>x.NomeMarca == escolha_marca);
                                             if (escolha != null)
                                             {        
-                                                PRODUTO produto_2 = new PRODUTO(produto_codigo, produto_nome, produto_preco,  data_produto, escolha_marca, log_usuario);
+                                                PRODUTO produto_2 = new PRODUTO(produto_codigo, produto_nome, produto_preco,  data_produto, escolha, log_usuario);
                                                 produto_1.Cadastrar(produto_2);
                                             }
                                             else
@@ -169,7 +170,7 @@ namespace ProjetoProdutosPOO_Dupla.Classes
                                     case "5":
                                         foreach (PRODUTO item in produto_1.ListaProduto)
                                         {
-                                            Console.WriteLine($"Código do produto: {item.Codigo} - Nome: {item.NomeProduto} - Preç: {item.Preco} - Data de cadastro: {item.DataDeCadastro} - {escolha} - {log_usuario}\n");
+                                            Console.WriteLine($"Código do produto: {item.Codigo} - Nome: {item.NomeProduto} - Preç: {item.Preco} - Data de cadastro: {item.DataDeCadastro} - Marca: {item.Marca.NomeMarca} - Cadastrado por: {log_usuario}\n");
                                         }
                                         break;
                                     case "6":
