@@ -9,7 +9,7 @@ namespace ProjetoProdutosPOO_Dupla.Classes
 
         
         private int Codigo { get; set; }
-        private string Nome { get; set; }
+        public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
         private DateTime DataCadastro { get; set; }
@@ -39,15 +39,7 @@ namespace ProjetoProdutosPOO_Dupla.Classes
             this.DataCadastro = _dataCadastro;
 
             
-        }
-
-
-        public USUARIO(string _deletarNome)
-        {
-            this.Nome = _deletarNome;
-        }
-
-        
+        }        
 
         public string Cadastrar(USUARIO UsuarioADD)
         {
