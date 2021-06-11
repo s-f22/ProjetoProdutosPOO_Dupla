@@ -161,7 +161,7 @@ namespace ProjetoProdutosPOO_Dupla.Classes
                                             if (escolha != null)
                                             {        
                                                 
-                                                PRODUTO produto_2 = new PRODUTO(produto_codigo, produto_nome, produto_preco, data_produto, escolha, produto_1.CadastroPor);
+                                                PRODUTO produto_2 = new PRODUTO(produto_codigo, produto_nome, produto_preco, data_produto, escolha, usuarioLogonOK);
                                                 produto_1.Cadastrar(produto_2);
                                             }
                                             else
@@ -175,7 +175,7 @@ namespace ProjetoProdutosPOO_Dupla.Classes
                                     case "5":
                                         foreach (PRODUTO item in produto_1.ListaProduto)
                                         {
-                                            Console.WriteLine($"Código do produto: {item.Codigo} - Nome: {item.NomeProduto} - Preç: {item.Preco} - Data de cadastro: {item.DataDeCadastro} - Marca: {item.Marca.NomeMarca} - Cadastrado por: {produto_1.CadastroPor}\n");
+                                            Console.WriteLine($"Código do produto: {item.Codigo} - Nome: {item.NomeProduto} - Preç: {item.Preco} - Data de cadastro: {item.DataDeCadastro} - Marca: {item.Marca.NomeMarca} - Cadastrado por: {usuarioLogonOK}\n");
                                         }
                                         break;
 
