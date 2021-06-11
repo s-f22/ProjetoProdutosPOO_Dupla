@@ -67,23 +67,22 @@ namespace ProjetoProdutosPOO_Dupla.Classes
                         Logado = false;
                         break;
                     case "3":
-                        Console.WriteLine("insira seu email: ");
-                        string log_email = Console.ReadLine();
-                        
-                        Console.WriteLine("insira seu senha: ");
-                        string log_senha = Console.ReadLine();
+                        Console.Write("Insira seu email: ");
+                        string _emailLog = Console.ReadLine().ToLower();
 
-                        USUARIO log_usuario = acesso_1.listaUsuariosCadastrados.Find(x =>x.Email == log_email && x.Senha == log_senha);
-                        if (log_usuario != null)
-                        {
-                            Console.WriteLine(Logar(log_usuario));
-                        }
-                        else
-                        {
-                            Console.WriteLine("senha ou email invalidos!");
-                            Logado = false;
-                        }
-                        // Console.WriteLine(Logar(acesso_1));
+                        Console.Write("Insira sua senha: ");
+                        string _senhaLog = Console.ReadLine();
+
+
+                        USUARIO log = new USUARIO(_emailLog, _senhaLog);
+
+                        USUARIO usuarioLogonOK = new USUARIO();
+
+                        usuarioLogonOK = acesso_1.ValidarLogin(log);
+
+                        Console.WriteLine(Logar(usuarioLogonOK));
+
+
                         do
                         {
 
@@ -110,20 +109,23 @@ namespace ProjetoProdutosPOO_Dupla.Classes
                                         DateTime data_cadastro = DateTime.Now;
 
                                         MARCA marca_2 = new MARCA(marca_codigo, marca_nome, data_cadastro);
-                                        marca_1.Cadastrar(marca_2);
+                                        Console.WriteLine(marca_1.Cadastrar(marca_2));
+                                        
                                         break;
+                                        
                                     case "2":
                                         foreach (MARCA item in marca_1.ListaMarca)
                                         {
                                             Console.WriteLine($"{item.NomeMarca}\n");
                                         }
                                         break;
+
                                     case "3":
                                         Console.WriteLine("Qual o nome da marca que deseja deletar?");
                                         string nome_marca = Console.ReadLine();
                                         if (marca_1.ListaMarca.Count == 0)
                                         {
-                                            Console.WriteLine("lista vaizi não tem o que deletar");
+                                            Console.WriteLine("lista vazia não tem o que deletar");
                                         }
                                         else
                                         {
@@ -131,6 +133,7 @@ namespace ProjetoProdutosPOO_Dupla.Classes
                                             marca_1.Deletar(marca_deletar);
                                         }
                                         break;
+
                                     case "4":
                                         Console.WriteLine("Qual o codigo do produto?");
                                         int produto_codigo = int.Parse(Console.ReadLine());
@@ -157,7 +160,8 @@ namespace ProjetoProdutosPOO_Dupla.Classes
                                             escolha = marca_1.ListaMarca.Find(x =>x.NomeMarca == escolha_marca);
                                             if (escolha != null)
                                             {        
-                                                PRODUTO produto_2 = new PRODUTO(produto_codigo, produto_nome, produto_preco,  data_produto, escolha, log_usuario);
+                                                
+                                                PRODUTO produto_2 = new PRODUTO(produto_codigo, produto_nome, produto_preco, data_produto, escolha, produto_1.CadastroPor);
                                                 produto_1.Cadastrar(produto_2);
                                             }
                                             else
@@ -167,12 +171,14 @@ namespace ProjetoProdutosPOO_Dupla.Classes
                                         }
 
                                         break;
+
                                     case "5":
                                         foreach (PRODUTO item in produto_1.ListaProduto)
                                         {
-                                            Console.WriteLine($"Código do produto: {item.Codigo} - Nome: {item.NomeProduto} - Preç: {item.Preco} - Data de cadastro: {item.DataDeCadastro} - Marca: {item.Marca.NomeMarca} - Cadastrado por: {log_usuario}\n");
+                                            Console.WriteLine($"Código do produto: {item.Codigo} - Nome: {item.NomeProduto} - Preç: {item.Preco} - Data de cadastro: {item.DataDeCadastro} - Marca: {item.Marca.NomeMarca} - Cadastrado por: {produto_1.CadastroPor}\n");
                                         }
                                         break;
+
                                     case "6":
                                         Console.WriteLine("Qual o nome da marca que deseja deletar?");
                                         string nome_produto = Console.ReadLine();
@@ -186,6 +192,7 @@ namespace ProjetoProdutosPOO_Dupla.Classes
                                             produto_1.Deletar(produto_deletar);
                                         }
                                         break;
+
                                     case "7":
                                         Console.WriteLine("tchau!");
                                         Logado = false;
@@ -222,8 +229,12 @@ namespace ProjetoProdutosPOO_Dupla.Classes
 
         public string Logar(USUARIO Usuario)
         {
-            Logado = true;
-            return $"Bem vindo";
+            if (Usuario.Codigo != 0)
+            {
+                Logado = true;
+                return "Login realizado com sucesso.\n";
+            }
+            return "Login não concluido.\n";
         }
 
     }
